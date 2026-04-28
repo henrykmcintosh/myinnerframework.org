@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Inner Framework — A Holistic Wellness Framework</title>
+  <meta name="description" content="A holistic wellness framework covering mental, emotional, social, and physical health. Evidence-based principles for a life well lived — written by Dr McIntosh." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="My Inner Framework — A Holistic Wellness Framework" />
+  <meta property="og:description" content="A holistic wellness framework covering mental, emotional, social, and physical health." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myinnerframework.org" />
+
+  <!-- Structured data for AI & search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "My Inner Framework",
+    "description": "A holistic wellness framework covering mental, emotional, social, and physical health.",
+    "url": "https://myinnerframework.org",
+    "author": {
+      "@type": "Person",
+      "name": "Dr McIntosh",
+      "jobTitle": "Medical Doctor"
+    },
+    "about": [
+      { "@type": "Thing", "name": "Mental Health" },
+      { "@type": "Thing", "name": "Emotional Wellbeing" },
+      { "@type": "Thing", "name": "Social Health" },
+      { "@type": "Thing", "name": "Physical Health" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Surfaces */
+      --bg:        #FFFFFF;
+      --bg-soft:   #FAFAF9;
+      --card:      #FFFFFF;
+      --border:    #EAE7E1;
+      --border-2:  #D9D4CB;
+
+      /* Ink */
+      --text:     #1F1B16;
+      --muted:    #6B6358;
+      --muted-2:  #8A8278;
+      --ink-deep: #2A241D;
+
+      /* Accent (editorial gold, used sparingly) */
+      --accent:        #B89256;
+      --accent-soft:   #D4B587;
+
+      /* Pillar palette — calm, muted */
+      --mental:          #6B9B7F;   /* sage green */
+      --mental-tint:     #EAF2EC;
+      --mental-border:   #CFE1D3;
+
+      --emotional:       #C98BA0;   /* dusty pink */
+      --emotional-tint:  #FAEEF1;
+      --emotional-border:#EACBD3;
+
+      --social:          #9E8CC4;   /* soft lavender */
+      --social-tint:     #F1ECF7;
+      --social-border:   #D8CDE4;
+
+      --physical:        #7EA0C4;   /* calm blue */
+      --physical-tint:   #ECF1F7;
+      --physical-border: #CFDAE7;
+
+      /* Radii */
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ───── NAV ───── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6B6358 !important;
+      text-decoration: none !important;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #2A241D !important; }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: #2A241D !important;
+      letter-spacing: 0.01em;
+      text-decoration: none !important;
+    }
+
+    /* ───── HERO ───── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      padding-top: 64px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+      padding: 4rem 2.5rem 4rem 4rem;
+      justify-self: end;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem;
+    }
+
+    .hero-image-wrap img {
+      max-width: 100%;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.75rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--ink-deep);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+    }
+
+    .hero-pillars {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .pillar-tag {
+      display: inline-block;
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .pillar-tag:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .pillar-tag.mental    { background: var(--mental-tint);    color: var(--mental);    border-color: var(--mental-border); }
+    .pillar-tag.emotional { background: var(--emotional-tint); color: var(--emotional); border-color: var(--emotional-border); }
+    .pillar-tag.social    { background: var(--social-tint);    color: var(--social);    border-color: var(--social-border); }
+    .pillar-tag.physical  { background: var(--physical-tint);  color: var(--physical);  border-color: var(--physical-border); }
+
+    /* ───── PAGE GRID ───── */
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 3rem;
+    }
+    .main-content { min-width: 0; }
+
+    /* ───── SIDEBAR ───── */
+    .sidebar { padding-top: 3rem; }
+    .sidebar-sticky { position: sticky; top: 84px; }
+
+    .ad-zone {
+      background: var(--bg-soft);
+      border: 1px dashed var(--border-2);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+    .ad-zone-sidebar { width: 100%; height: 600px; margin-bottom: 2rem; }
+    .ad-zone-label {
+      padding: 0.5rem 1rem;
+      background: rgba(0,0,0,0.03);
+      border-radius: var(--r-sm);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    .sidebar-jump-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 0.9rem;
+    }
+    .sidebar-jump-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .sidebar-jump-list a {
+      font-size: 0.88rem;
+      color: var(--ink-deep);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .sidebar-jump-list a:hover { color: var(--accent); }
+
+    /* ───── SECTION INTRO ───── */
+    .section-intro {
+      padding: 5rem 0 2rem;
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .section-intro h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--ink-deep);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.005em;
+    }
+
+    /* ───── PILLAR SECTIONS ───── */
+    .pillar-section {
+      padding: 3rem 0 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .pillar-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pillar-title-group h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      font-weight: 400;
+      color: var(--ink-deep);
+      margin-bottom: 0.15rem;
+      letter-spacing: -0.005em;
+    }
+
+    .pillar-title-group span {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      font-weight: 500;
+    }
+
+    /* pillar accents */
+    .pillar-mental    .pillar-number { background: var(--mental-tint);    color: var(--mental); }
+    .pillar-emotional .pillar-number { background: var(--emotional-tint); color: var(--emotional); }
+    .pillar-social    .pillar-number { background: var(--social-tint);    color: var(--social); }
+    .pillar-physical  .pillar-number { background: var(--physical-tint);  color: var(--physical); }
+
+    /* ───── QUOTE CALLOUT ───── */
+    .quote-callout {
+      margin: 2.5rem 0 3rem;
+      padding: 2rem 2.5rem;
+      border-radius: var(--r-lg);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .pillar-mental    .quote-callout { background: var(--mental-tint);    border-color: var(--mental-border); }
+    .pillar-emotional .quote-callout { background: var(--emotional-tint); border-color: var(--emotional-border); }
+    .pillar-social    .quote-callout { background: var(--social-tint);    border-color: var(--social-border); }
+    .pillar-physical  .quote-callout { background: var(--physical-tint);  border-color: var(--physical-border); }
+
+    .quote-callout blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink-deep);
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .quote-callout cite {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    /* ───── TOPIC CARDS ───── */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .topic-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      overflow: hidden;
+    }
+
+    .topic-card:hover {
+      border-color: var(--border-2);
+      box-shadow: 0 4px 20px rgba(30, 25, 20, 0.05);
+      transform: translateY(-1px);
+    }
+
+    .topic-card details { width: 100%; }
+
+    .topic-card summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.5rem 1.75rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .topic-card summary::-webkit-details-marker { display: none; }
+
+    .topic-card summary::after {
+      content: '';
+      position: absolute;
+      top: 1.8rem;
+      right: 1.75rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border-2);
+      background:
+        linear-gradient(currentColor, currentColor) center/10px 1px no-repeat,
+        linear-gradient(currentColor, currentColor) center/1px 10px no-repeat;
+      color: var(--muted);
+      transition: transform 0.3s, color 0.2s, border-color 0.2s;
+    }
+
+    .topic-card details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .topic-card summary:hover::after {
+      color: var(--ink-deep);
+      border-color: var(--muted-2);
+    }
+
+    .topic-num {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-mental    .topic-num { color: var(--mental); }
+    .pillar-emotional .topic-num { color: var(--emotional); }
+    .pillar-social    .topic-num { color: var(--social); }
+    .pillar-physical  .topic-num { color: var(--physical); }
+
+    .topic-card h3 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink-deep);
+      margin-bottom: 0.6rem;
+      padding-right: 2.5rem;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
+
+    .topic-summary-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .topic-detail {
+      padding: 0 1.75rem 1.75rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.25rem;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .topic-detail h4 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink-deep);
+      margin: 1.5rem 0 0.5rem;
+      letter-spacing: -0.005em;
+    }
+    .topic-detail h4:first-child { margin-top: 1.5rem; }
+
+    .topic-detail p {
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .topic-detail ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .topic-detail ul li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .topic-detail ul li::before {
+      content: '';
+      position: absolute;
+      left: 0.25rem;
+      top: 0.7rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .pillar-mental    .topic-detail ul li::before { background: var(--mental); }
+    .pillar-emotional .topic-detail ul li::before { background: var(--emotional); }
+    .pillar-social    .topic-detail ul li::before { background: var(--social); }
+    .pillar-physical  .topic-detail ul li::before { background: var(--physical); }
+
+    .topic-detail ul ul { margin-top: 0.4rem; margin-bottom: 0.5rem; }
+    .topic-detail ul ul li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 1rem;
+    }
+    .topic-detail ul ul li::before {
+      width: 4px; height: 1px; border-radius: 0;
+      top: 0.75rem; left: 0;
+    }
+
+    .topic-detail blockquote {
+      border-left: 2px solid var(--accent);
+      padding: 0.6rem 0 0.6rem 1.1rem;
+      margin: 1rem 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-style: italic;
+      color: var(--ink-deep);
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .topic-detail em { color: var(--ink-deep); font-style: italic; }
+    .topic-detail strong { color: var(--ink-deep); font-weight: 600; }
+
+    /* coloured left-border stripe */
+    .pillar-mental    .topic-card { border-left: 3px solid var(--mental); }
+    .pillar-emotional .topic-card { border-left: 3px solid var(--emotional); }
+    .pillar-social    .topic-card { border-left: 3px solid var(--social); }
+    .pillar-physical  .topic-card { border-left: 3px solid var(--physical); }
+
+    /* ───── PAGE MEDICAL DISCLAIMER BOX ───── */
+    .page-disclaimer-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem 0;
+    }
+
+    .page-disclaimer {
+      background: #5A3D1A;
+      color: rgba(255, 255, 255, 0.92);
+      border-radius: 20px;
+      padding: 2rem 2.25rem;
+      font-size: 0.93rem;
+      line-height: 1.75;
+    }
+
+    .page-disclaimer h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #E8D0B0;
+      margin-bottom: 0.85rem;
+    }
+
+    .page-disclaimer p {
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 600px) {
+      .page-disclaimer { padding: 1.5rem 1.5rem; }
+    }
+
+    /* ───── FOOTER AD ───── */
+    .footer-ad-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2rem 0;
+    }
+    .ad-zone-footer { width: 100%; height: 120px; }
+
+    /* ───── TRUST PAGES (About & Contact) ───── */
+    .trust-section {
+      padding: 3.5rem 0 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      font-weight: 400;
+      color: var(--ink-deep);
+      margin-bottom: 2rem;
+      letter-spacing: -0.005em;
+    }
+
+    .trust-section h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink-deep);
+      margin: 1.75rem 0 0.5rem;
+      letter-spacing: -0.005em;
+    }
+
+    .trust-section h3:first-of-type { margin-top: 0; }
+
+    .trust-section p {
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+      max-width: 640px;
+    }
+
+    .trust-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .trust-section ul li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .trust-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0.25rem;
+      top: 0.7rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .about-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 2.5rem;
+      max-width: 640px;
+    }
+
+    .about-card .about-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--ink-deep);
+      margin-bottom: 0.15rem;
+    }
+
+    .about-card .about-credentials {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    .about-card p {
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 0.65rem;
+    }
+
+    .about-card p:last-child { margin-bottom: 0; }
+
+    .trust-quote {
+      border-left: 2px solid var(--accent);
+      padding: 0.6rem 0 0.6rem 1.25rem;
+      margin: 1.5rem 0;
+      max-width: 640px;
+    }
+
+    .trust-quote blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink-deep);
+      line-height: 1.45;
+      margin-bottom: 0.4rem;
+    }
+
+    .trust-quote cite {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: normal;
+      letter-spacing: 0.04em;
+    }
+
+    .contact-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 2.25rem;
+      max-width: 480px;
+    }
+
+    .contact-box p {
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 0.65rem;
+    }
+
+    .contact-box p:last-child { margin-bottom: 0; }
+
+    .contact-box a {
+      color: var(--ink-deep);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-2);
+      transition: border-color 0.2s;
+    }
+
+    .contact-box a:hover { border-color: var(--ink-deep); }
+
+    .contact-note {
+      font-size: 0.85rem !important;
+      color: var(--muted) !important;
+      font-style: italic;
+    }
+
+    /* ───── REFERENCES ───── */
+    .cite-num {
+      font-size: 0.7em;
+      vertical-align: super;
+      line-height: 0;
+      color: var(--accent);
+      font-weight: 600;
+      margin-left: 1px;
+    }
+
+    .cite-num a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .cite-num a:hover { text-decoration: underline; }
+
+    .references-section {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .references-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ink-deep);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.005em;
+    }
+
+    .references-section ol {
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+
+    .author-credit {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .author-credit-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--mental-tint), var(--social-tint));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink-deep);
+      flex-shrink: 0;
+    }
+
+    .author-credit-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--ink-deep);
+      font-weight: 400;
+    }
+
+    .author-credit-text strong {
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* ───── FOOTER ───── */
+    footer {
+      background: var(--ink-deep);
+      color: rgba(255,255,255,0.6);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand p { font-size: 0.88rem; line-height: 1.65; }
+
+    .footer-brand .footer-author {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      margin-top: 0.75rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .footer-nav h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-nav ul { list-style: none; }
+    .footer-nav li { margin-bottom: 0.4rem; }
+    .footer-nav a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: rgba(255,255,255,0.95); }
+
+    .footer-disclaimer {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      font-size: 0.78rem;
+      line-height: 1.65;
+    }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 900px) {
+      .page-wrapper { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        min-height: auto;
+      }
+      .hero-content {
+        padding: 2.5rem 1.5rem 1rem;
+        max-width: 100%;
+        justify-self: stretch;
+      }
+      .hero-image-wrap {
+        padding: 0 1.5rem 2.5rem;
+        height: auto;
+      }
+      .hero-image-wrap img { max-height: 55vh; }
+    }
+  </style>
+  <!-- Termly Cookie Consent Banner -->
+  <script src="https://app.termly.io/resource-blocker/ff93ce2e-9613-4c26-bea6-d5822faa053c?autoBlock=on"></script>
+</head>
+
+<body>
+
+  <nav aria-label="Main navigation">
+    <a href="#" class="nav-logo">My Inner Framework</a>
+    <ul class="nav-links">
+      <li><a href="#mental">Mental</a></li>
+      <li><a href="#emotional">Emotional</a></li>
+      <li><a href="#social">Social</a></li>
+      <li><a href="#physical">Physical</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" role="banner">
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">A holistic approach for the whole person</p>
+      <h1 class="hero-title">
+        Don't just survive.<br/>
+        <em>Thrive.</em>
+      </h1>
+      <p class="hero-lead">
+        Reflect on your pillars. Build up your foundation. Strengthen your constitution. Live a life well lived.
+      </p>
+      <div class="hero-pillars" role="navigation" aria-label="Framework pillars">
+        <a href="#mental"    class="pillar-tag mental">Mental</a>
+        <a href="#emotional" class="pillar-tag emotional">Emotional</a>
+        <a href="#social"    class="pillar-tag social">Social</a>
+        <a href="#physical"  class="pillar-tag physical">Physical</a>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap" aria-hidden="true">
+      <img src="tree.png" alt="" />
+    </div>
+  </header>
+
+  <div class="page-wrapper">
+
+    <main class="main-content" id="main-content">
+
+      <!-- ══ MENTAL ══ -->
+      <section id="mental" class="pillar-section pillar-mental" aria-labelledby="mental-heading">
+        <div class="pillar-header">
+          <span class="pillar-number" aria-hidden="true">01</span>
+          <div class="pillar-title-group">
+            <h2 id="mental-heading">Mental</h2>
+            <span>Mindset · Purpose · Resilience</span>
+          </div>
+        </div>
+
+        <div class="quote-callout">
+          <blockquote>"Time is currency: what you trade your time for, is what you become."</blockquote>
+          <cite>— My Inner Framework, 1.3 Personality</cite>
+        </div>
+
+        <div class="topics-grid">
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.1</p>
+            <h3>Contentment</h3>
+            <p class="topic-summary-text">Built on Seligman's PERMA framework — the five building blocks of a contented life.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Martin Seligman's PERMA framework provides a solid foundation of key elements for contentment to build your life upon<sup class="cite-num"><a href="#ref1">1</a></sup>:</p>
+            <ul>
+              <li><strong>P</strong> — Positive Emotion</li>
+              <li><strong>E</strong> — Engagement</li>
+              <li><strong>R</strong> — Relationships</li>
+              <li><strong>M</strong> — Meaning</li>
+              <li><strong>A</strong> — Accomplishments</li>
+            </ul>
+            <p>From personal experience: if your days feature positive feeling, stimulating interactions that titillate the brain, constructive relations, purposeful decision-making and evidence of progress, life is at least good — perhaps even great.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.2</p>
+            <h3>Purpose</h3>
+            <p class="topic-summary-text">Your <em>ikigai</em> — the unique reason you get out of bed in the morning.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>What gets you out of bed in the morning? What is your <em>ikigai</em>? What are your guiding principles?</p>
+            <p>We are not all here on earth for the same reason. Your purpose for being, and idea of meaning will be nuanced, and unique.</p>
+            <p>As a doctor, caring for patients and noting differences in their experience of sickness has taught me much. I think the degree of distress directly relates to baseline life satisfaction, and reflects the Greek philosopher Epicurus' idea of true pleasure; <em>ataraxia</em>, defined as "the absence of pain in both the body and soul". Illness is physical, but modulated heavily by mental, emotional, social and spiritual factors, that all affect your will to live, and how you live.</p>
+            <p>The feeling that life is meaningful usually comes from knowing what you want, and actioning your intentions for personal and communal contentment. It denotes looking after yourself holistically, others, and the ideas that you believe are important.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.3</p>
+            <h3>Personality</h3>
+            <p class="topic-summary-text">"I am" affirmations grounded in your actual actions — a mirror of who you are becoming.</p>
+          </summary>
+          <div class="topic-detail">
+            <p><strong>Time is currency: what you trade your time for, is what you become.</strong></p>
+            <p>Keep a list of "I am" affirmations that reflect your actions. For example, if you practice kindness daily, volunteer at a charity, make your friends laugh, play sport, show up to work on time, you can include the following:</p>
+            <ul>
+              <li>I am kind</li>
+              <li>I am charitable</li>
+              <li>I am funny</li>
+              <li>I am sporty / active</li>
+              <li>I am punctual</li>
+            </ul>
+            <p>This is a simple way of reflecting on who you are, and who you <em>are not</em>. Do you live like the person you want to be?</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.4</p>
+            <h3>Resilience & Learning to Fail</h3>
+            <p class="topic-summary-text">Adopt a Growth Mindset. Fail smart: analyse, revise, retry.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>A Growth Mindset will allow you to catalyse your future</h4>
+            <p><strong>Fail smart:</strong> If you fail, simply analyse the situation, identify weaknesses, revise your skills, and then try again.</p>
+            <p>As per Angela Duckworth's book <em>Grit</em><sup class="cite-num"><a href="#ref2">2</a></sup>:</p>
+            <ul>
+              <li>(Talent + knowledge) × effort = skill</li>
+              <li>Skill × effort = achievement</li>
+            </ul>
+            <p><strong>Grit</strong> bridges the gap between talent and achievement. Embrace the grind. Be a student of life — a lifetime of learning yields positive outcomes.</p>
+            <h4>Good enough is enough</h4>
+            <p>Perfectionism is an abstract concept. It should not define your reality. Put in the work, and just do your best. It's exceptionally hard to have regrets when you give your all.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.5</p>
+            <h3>Habits</h3>
+            <p class="topic-summary-text">You are only as good as your systems. Make good habits easy and bad habits invisible.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>James Clear's <em>Atomic Habits</em> nicely explains the importance of habits<sup class="cite-num"><a href="#ref3">3</a></sup>. I suggest you read his book for a comprehensive understanding on the topic.</p>
+            <h4>For good habits, focus on:</h4>
+            <p><strong>Making it obvious and easy:</strong></p>
+            <ul>
+              <li>Design the environment</li>
+              <li>Schedule</li>
+              <li>Habit stack</li>
+              <li>Have implementation intentions</li>
+            </ul>
+            <p><strong>Making it attractive:</strong></p>
+            <ul>
+              <li>Fun</li>
+              <li>Rewarding</li>
+              <li>Convenient</li>
+            </ul>
+            <h4>For bad habits</h4>
+            <p>Make them difficult, dissatisfying and invisible.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.6</p>
+            <h3>Hobbies</h3>
+            <p class="topic-summary-text">Life is short. Carve out time for the things that bring you joy.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Life is short, and busy. Carve out time for fun activities.</p>
+            <p>If you have no hobbies, I strongly recommend you try new things, and find something you didn't know you loved.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.7</p>
+            <h3>Holidays</h3>
+            <p class="topic-summary-text">Mini-adventures throughout the year. Tranquillity is found in nature.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Aim to do mini-adventures each year. I aim for at least 3.</p>
+            <p><strong>Tranquillity:</strong> is found in nature, and large bodies of water. Avoid solely visiting a different urban area when you travel.</p>
+            <p><strong>Be curious about the world.</strong> Life is beautiful. Look for the wonder in the world.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.8</p>
+            <h3>Mindfulness & Grounding</h3>
+            <p class="topic-summary-text">Daily reflection on gratitude, good deeds, meditation and breathwork.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Gratitude visit</h4>
+            <p>Reflect on 3 things you are grateful for today.</p>
+            <h4>1 good deed</h4>
+            <p>Reflect on 1 good deed you performed today.</p>
+            <h4>Meditation</h4>
+            <p>Guided or solo meditation for 10 minutes.</p>
+            <h4>Deep breathing</h4>
+            <p>If you struggle to meditate, aim to do at least 10 breaths, with 4 seconds of inhalation through your nose, and 4–6 seconds of exhalation through your mouth.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.9</p>
+            <h3>Engage with the World</h3>
+            <p class="topic-summary-text">Have an opinion. Read history. Contribute your thread to the tapestry of knowledge.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Have an opinion</h4>
+            <p>Politicisation emboldens the individual — it inspires passion, and stimulates community engagement in ideas. Do not be a passenger. Unopposed bad ideas will rot society to its core.</p>
+            <h4>Read history</h4>
+            <p>Heed George Santayana's words: "those who do not learn history are condemned to repeat it".</p>
+            <h4>Contribute to the tapestry of knowledge</h4>
+            <p>Everyone has a thread.</p>
+            <ul>
+              <li>Write something</li>
+              <li>Measure something</li>
+              <li>Make something</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.10</p>
+            <h3>Motivation</h3>
+            <p class="topic-summary-text">You are currently living your legacy. Make your actions count.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>The beginning, and everything after, is only meaningful because of the end.</p>
+            <p>We all have a date with death, and it's important to think about how we want to die, and who we are when we die.</p>
+            <p>At your funeral, what will people say in your eulogy? What story will be told?</p>
+            <ul>
+              <li>You are currently living your legacy</li>
+              <li>Make your actions count</li>
+              <li>Build the person you want to be</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.11</p>
+            <h3>Be Assertive</h3>
+            <p class="topic-summary-text">Hold yourself with self-respect. Learn to say No. Set boundaries.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Hold yourself with self-respect</h4>
+            <p>Stand tall, back straight, shoulders relaxed.</p>
+            <h4>Learn to say 'No'</h4>
+            <p>Be polite, but not <em>overly</em> agreeable — these people get trampled. Saying 'No', or speaking directly will feel overwhelmingly direct at first, but with time you'll grow accustomed to it, save time, and be able to self-advocate.</p>
+            <h4>Do not apologise for your preferences or needs</h4>
+            <p>Your needs are valid. Use language such as: "Do you have a moment?" or "Could I please talk to you". Avoid: "Sorry to bother you, but…"</p>
+            <h4>Practice boundary setting</h4>
+            <p>It's essentially picking time and place for conversations, and self-advocating for a reasonable course of action or timeline:</p>
+            <ul>
+              <li><strong>At work:</strong> "I can do Task A, or B, but not both"</li>
+              <li><strong>At home:</strong> "I can prep dinner, if you pick up the kids from sport"</li>
+              <li><strong>In a relationship:</strong> "I'm exhausted from this weekend's social events, and need some personal down time"</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">1.12</p>
+            <h3>Take Risks</h3>
+            <p class="topic-summary-text">"A ship is safe in harbour, but that's not what ships are for."</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Exercise your risk muscle</h4>
+            <ul>
+              <li>Dare to dream</li>
+              <li>Dare to do</li>
+              <li>Take calculated risks, and follow them through. Don't die wondering, or losing sleep over "what ifs"</li>
+            </ul>
+            <h4>Risks result in reward, and sometimes ruin</h4>
+            <p><strong>Live fearlessly, but not stupidly.</strong> For example, gambling is risky and stupid. AI agent polymarket arbitrage is potentially smart, if it ends up being profitable.</p>
+            <blockquote>"A ship is safe in harbour, but that's not what ships are for." — John A Shedd</blockquote>
+            <p>Risks are essential to progress — you have to venture out in life, just be wary of the storm.</p>
+            <h4>It's ok to fail</h4>
+            <p>Live and learn. Hindsight is a privilege.</p>
+          </div>
+          </details></article>
+
+        </div>
+      </section>
+
+      <!-- ══ EMOTIONAL ══ -->
+      <section id="emotional" class="pillar-section pillar-emotional" aria-labelledby="emotional-heading">
+        <div class="pillar-header">
+          <span class="pillar-number" aria-hidden="true">02</span>
+          <div class="pillar-title-group">
+            <h2 id="emotional-heading">Emotional</h2>
+            <span>Love · Intelligence · Stress</span>
+          </div>
+        </div>
+
+        <div class="quote-callout">
+          <blockquote>"Where there is love there is life."</blockquote>
+          <cite>— Mahatma Gandhi</cite>
+        </div>
+
+        <div class="topics-grid">
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">2.1</p>
+            <h3>Emotional Intelligence (EQ)</h3>
+            <p class="topic-summary-text">Maximise joy, gratitude, compassion. Avoid the four horsemen.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>I strongly recommend reading <em>Atlas of the Heart: Mapping Meaningful Connection and the Language of Human Experience</em> by Brené Brown<sup class="cite-num"><a href="#ref4">4</a></sup>.</p>
+            <h4>Traits and states to maximise</h4>
+            <ul>
+              <li>Freudenfreude</li>
+              <li>Joy</li>
+              <li>Contentment</li>
+              <li>Gratitude</li>
+              <li>Compassion</li>
+              <li>Self security</li>
+              <li>Grounded confidence</li>
+              <li>Humility</li>
+            </ul>
+            <h4>To minimise or avoid in yourself and others</h4>
+            <ul>
+              <li><strong>The 4 horsemen:</strong> contempt, criticising, defensiveness, and stone-walling</li>
+              <li>Humiliation</li>
+              <li>Shame</li>
+              <li>Dehumanising</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">2.2</p>
+            <h3>Love</h3>
+            <p class="topic-summary-text">Learn to love yourself so you can love others. Be authentic. Be brave. Be vulnerable.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Learn to love yourself, so that you can love others.</p>
+            <h4>Be authentic — Brené Brown<sup class="cite-num"><a href="#ref4">4</a></sup></h4>
+            <ul>
+              <li>Authenticity is essential for belonging — conformity is a threat to your true sense of self</li>
+              <li>Authenticity is married to connection — perfectionism is a threat to self-acceptance</li>
+            </ul>
+            <h4>Love is different to attachment</h4>
+            <ul>
+              <li>Bring out the best in each other</li>
+              <li>Be brave, be vulnerable</li>
+              <li>Enjoy and appreciate your partner's personality, quirks, and time</li>
+              <li>Do not go into a relationship looking to fix someone, out of insecurity, or desperate loneliness</li>
+              <li>Avoid the 4 horsemen</li>
+              <li>Life and love is a journey. Couples that grow together, stay together</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">2.3</p>
+            <h3>Intimacy & Sexual Health</h3>
+            <p class="topic-summary-text">Built on consent, safety, connection, and communication.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Great intimacy is built on a combination of things:</p>
+            <h4>Consent</h4>
+            <ul>
+              <li>Be on the same page, and direct: "Do you want to have sex?"</li>
+              <li>It's ok to say "No"</li>
+              <li>If you're unsure, then don't. Sex is a physical, psycho-social phenomenon that is experientially intense, and can have a lasting impact</li>
+              <li>Does this correspond to your religious viewpoint?</li>
+            </ul>
+            <h4>Safety</h4>
+            <p>Built on trust. Use protection (unless intending to fall pregnant). Sexually transmitted diseases are common, potentially life-long or difficult to treat. Discuss with your doctor regarding protection, and know the basics of common infections including chlamydia, syphilis, gonorrhoea, herpes, HPV, HIV, and hepatitis B.</p>
+            <h4>Connection & anticipation</h4>
+            <p>Do you really like this person? Making love when you are in love (or falling in love) is better than casual sex. The decision and enjoyment of sex is the product of an accumulation of moments prior — every gesture, embrace, thoughtful act, and word of endearment.</p>
+            <h4>Communication & feedback</h4>
+            <p>Respect each other always. Explicitly state boundaries: DOs and DON'Ts. A partner who cares for you will want to pleasure you and appreciate guidance. Do not pressure your partner into acts that cause pain.</p>
+            <h4>A note on pornography</h4>
+            <p>Unfortunately porn is society's main educator on sexual practices, however is often aggressive, dehumanising, and unrealistic. Keep sex simple and focus on respectful practices. If you watch lots of porn and experience little pleasure or excitement around sex, porn is the problem.</p>
+            <h4>Hygiene</h4>
+            <p>Females should pee post sex.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">2.4</p>
+            <h3>Stress Management</h3>
+            <p class="topic-summary-text">Identify your stressors. Identify your de-stressors. Have a routine.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Identify stressors in your life</h4>
+            <p>Everyone gets stressed. All you can aim to do is minimise the number of stressors, and therefore the cumulative stress that you suffer in life:</p>
+            <ul>
+              <li><strong>Emotional:</strong> toxic friends, toxic family, toxic partner</li>
+              <li><strong>Mental:</strong> toxic workplace</li>
+              <li><strong>Physical:</strong> toxic coping methods (drugs, alcohol, nicotine), shift work, excessive caffeine</li>
+            </ul>
+            <h4>Identify de-stressing activities</h4>
+            <p>Meditation, mindfulness, sport, specific friends, family, colleagues, hobbies, holidays etc.</p>
+            <h4>Have a routine</h4>
+            <p>Your brain uses less energy on regularly completed activities. Develop good habits.</p>
+          </div>
+          </details></article>
+
+        </div>
+      </section>
+
+      <!-- ══ SOCIAL ══ -->
+      <section id="social" class="pillar-section pillar-social" aria-labelledby="social-heading">
+        <div class="pillar-header">
+          <span class="pillar-number" aria-hidden="true">03</span>
+          <div class="pillar-title-group">
+            <h2 id="social-heading">Social</h2>
+            <span>Community · Awareness · Kindness</span>
+          </div>
+        </div>
+
+        <div class="quote-callout">
+          <blockquote>"If you're not paying for the product, you are the product."</blockquote>
+          <cite>— My Inner Framework, 3.2 Dopamine Detoxification</cite>
+        </div>
+
+        <div class="topics-grid">
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">3.1</p>
+            <h3>Friendship</h3>
+            <p class="topic-summary-text">You get out what you put in. Tell friends what they need to hear.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>You get out what you put in</h4>
+            <ul>
+              <li>Relationships require effort</li>
+              <li>Remember to host events</li>
+              <li>Remember to ask how people are going</li>
+              <li>To be a true friend, there will be times where you should say what your friend <em>needs to hear</em>, rather than what they <em>want to hear</em></li>
+            </ul>
+            <p>It's important to share this opinion when a friend is battling addiction, self-destructive practices, or lacks insight on a critical issue (be it family, work, health etc).</p>
+            <h4>Find like-minded people</h4>
+            <p>Like attracts like.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">3.2</p>
+            <h3>Dopamine & Social Media</h3>
+            <p class="topic-summary-text">The algorithm exploits your reward circuits. Reclaim your attention.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Social media</h4>
+            <p><strong>If you're not paying for the product, you are the product.</strong></p>
+            <p>In this modern attention economy, be aware of how social media addicts you to scrolling. Doomscrolling benefits conglomerates and advertisers, NOT YOU. They do not care for you. The algorithm is designed to take advantage of you.</p>
+            <h4>Variable reward schedules</h4>
+            <p>Your brain's reward circuit has expectations around seeing enjoyable content. Each good video is a dopamine hit.</p>
+            <h4>Reward prediction errors</h4>
+            <p>The unpredictability of when that good video will appear keeps you scrolling. Each scroll is like pulling the lever on a slot machine. A dud video elicits no response, however an <em>unexpected</em> good video delivers a dopamine hit. This creates patterned, reinforced behaviour, the more you doomscroll.</p>
+            <h4>Environmental hyper-sexualisation</h4>
+            <p>Sex sells, and amoral or immoral people will use this to take advantage of you. These industries do not care for your wellbeing, just your pockets. Falling prey to OnlyFans, porn, and certain influencers will fry your reward circuits over time. Reduce the extent these industries feature on your social media feed, preferably to zero.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">3.3</p>
+            <h3>The Obesogenic Environment</h3>
+            <p class="topic-summary-text">Design your social calendar to protect your health. Learn to cook.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Humans love salt, sugar, and fat</h4>
+            <p>Historically these foods were in short supply. We aren't designed to eat the abundant, cheap, highly processed foods now easily accessible. It's important to ignore the fast-food hot spots.</p>
+            <h4>Design your social calendar and events</h4>
+            <p>If eating out, opt for healthier choices.</p>
+            <h4>Learn to cook healthy food</h4>
+            <p>Home cooking is essential for living a longer, better life.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">3.4</p>
+            <h3>Networking</h3>
+            <p class="topic-summary-text">Make friends, not enemies. Stand tall. Be generous with your time.</p>
+          </summary>
+          <div class="topic-detail">
+            <ul>
+              <li>Make friends, not enemies at work, even if your colleagues are often your competition</li>
+              <li>Attend work events</li>
+              <li>Collect contact details (be it a phone number, or on social media)</li>
+              <li>Stand tall, and have a firm handshake</li>
+              <li>Smile, or at least look approachable and personable</li>
+              <li>Dress to impress — you never know who you'll run into around the block</li>
+              <li>Be generous with your time and attention; take on a mentee, compliment people</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">3.5</p>
+            <h3>Kindness</h3>
+            <p class="topic-summary-text">A little kindness goes a long way — and it's free.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>A little kindness goes a long way, and it's free.</p>
+            <p>Kindness has a funny way of circling back: better to give and receive kindness, than unkindness.</p>
+          </div>
+          </details></article>
+
+        </div>
+      </section>
+
+      <!-- ══ PHYSICAL ══ -->
+      <section id="physical" class="pillar-section pillar-physical" aria-labelledby="physical-heading">
+        <div class="pillar-header">
+          <span class="pillar-number" aria-hidden="true">04</span>
+          <div class="pillar-title-group">
+            <h2 id="physical-heading">Physical</h2>
+            <span>Body · Nutrition · Recovery</span>
+          </div>
+        </div>
+
+        <div class="quote-callout">
+          <blockquote>"Being strong, especially as you age, will improve your quality of life and keep you moving for longer."</blockquote>
+          <cite>— My Inner Framework, 4.5 Muscles</cite>
+        </div>
+
+        <div class="topics-grid">
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.1</p>
+            <h3>Skin & Microbiome</h3>
+            <p class="topic-summary-text">Cleanse, moisturise, sun protect. Embrace ageing with grace.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Acne</h4>
+            <p>If cystic or abscess-like, see a doctor. Identify triggers — caffeine (especially energy drinks), sugar, stress, hygiene (using old towels), hormones (puberty, menstrual cycle, PCOS).</p>
+            <h4>General skin care</h4>
+            <ul>
+              <li>Eat healthy</li>
+              <li>Avoid your modifiable acne triggers</li>
+              <li>Use fresh towels (change bath towel at least weekly, gym towel every couple of days)</li>
+              <li><strong>Face:</strong> cleanse with a cleanser, then moisturise</li>
+              <li><strong>Body:</strong> skin pH neutral (~5.5), sensitive soap. Avoid over-washing to protect your skin microbiome</li>
+            </ul>
+            <h4>Sun care</h4>
+            <ul>
+              <li>Use sunscreen from a tested, trusted brand with appropriate SPF</li>
+              <li>Avoid high UV exposure — be active morning and evening rather than midday</li>
+              <li>Cover up with clothes and a hat</li>
+              <li>Seek shade</li>
+              <li>Wear sunglasses to protect your eyes</li>
+            </ul>
+            <h4>Embrace ageing</h4>
+            <p>Death comes for us all, and so do wrinkles. Age with grace, and embrace your lines. Unless we hack the biological programming responsible for ageing, your organs (your skin is the largest) will inevitably deteriorate. Do the basics above. Anything ancillary has financial cost and unclear pay-off — be cautious.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.2</p>
+            <h3>Teeth (Dental Hygiene)</h3>
+            <p class="topic-summary-text">Brush, floss, fluoride. Dental health often reflects overall health.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Dental health is often a reflection of overall health.</p>
+            <h4>Standard routine</h4>
+            <ul>
+              <li>Brush twice daily with fluoride containing toothpaste, and a soft-bristled toothbrush</li>
+              <li>Brushing technique as per your dentist (gentle, vertical motion, predominantly targeting gums)</li>
+              <li>Avoid ingesting liquids in the 10–15 minutes post brushing</li>
+              <li>Floss daily</li>
+              <li>Avoid carbonated and sugary drinks and foods</li>
+              <li>If you do consume them, drink plain water afterwards</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.3</p>
+            <h3>Vessels (Blood Pressure)</h3>
+            <p class="topic-summary-text">Possibly the single most impactful health metric to control over a lifetime.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>There are doctors out there that believe the most useful thing they can do for you across a lifetime is "help control the blood pressure".</p>
+            <h4>Optimal BP-friendly diet</h4>
+            <p>(Assuming no health problems. If you have health problems, talk to your doctor.)</p>
+            <ul>
+              <li>Regular exercise</li>
+              <li><strong>Protein source:</strong> primarily fish, chicken; occasional red meat; no cured meats</li>
+              <li>High potassium</li>
+              <li>Low salt</li>
+              <li>Low fast carbs (e.g. sugar, white bread)</li>
+              <li>Low saturated fats</li>
+              <li>No alcohol</li>
+              <li>No smoking</li>
+              <li>Weight loss if indicated</li>
+            </ul>
+            <p>If the above is not cutting it, you'll need some extra help from your doctor.</p>
+            <h4>Intermittent fasting</h4>
+            <p>An occasional fast of 24–48 hours to promote some useful autophagy is potentially beneficial. You can probably achieve the same effect by just having salad and protein, and prevent too much muscle breakdown.</p>
+            <p>In general aim to have either eating windows (6–8 hours) and otherwise fasting, or eating meals as: large breakfast, medium lunch, small dinner. Snacking is generally unhelpful.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.4</p>
+            <h3>Lungs & Heart</h3>
+            <p class="topic-summary-text">Protect your VO₂ max with HIT or Zone 2 cardio.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Look after your VO₂ max.</p>
+            <p><strong>HRmax = 220 – age</strong></p>
+            <h4>High Intensity Training (e.g. Norwegian protocol)</h4>
+            <ul>
+              <li>4 mins at 85–95% HRmax</li>
+              <li>3 mins recovery</li>
+              <li>Repeat 4 times</li>
+              <li>3 sessions per week</li>
+            </ul>
+            <h4>Zone 2 cardio</h4>
+            <ul>
+              <li>60–70% of HRmax</li>
+              <li><strong>Talk test:</strong> can converse with someone, but can't sing</li>
+              <li>Cycling, running, fast walking, rowing, swimming all fit</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.5</p>
+            <h3>Muscles</h3>
+            <p class="topic-summary-text">Stronger muscles, fewer injuries, better quality of life as you age.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Stronger muscles mean greater functional capacity and reduced injuries. Being strong, especially as you age, will improve your quality of life and keep you moving for longer. Aim to have a strong core, hips and lower body.</p>
+            <p><strong>Steroids will kill you faster. Please don't do them.</strong></p>
+            <h4>Stretch daily</h4>
+            <p>It's like targeted relaxation therapy for your muscles. A lot of common problems, such as back pain, can be partially avoided with stretching.</p>
+            <p>A potential routine (30 seconds each exercise, on each side):</p>
+            <ul>
+              <li><strong>Calf stretch:</strong> standing straight-leg calf stretch</li>
+              <li><strong>Quad stretch:</strong> standing quad stretch</li>
+              <li><strong>Hamstring stretch:</strong> touch your toes</li>
+              <li><strong>Hip stretch:</strong> lizard pose, half pigeon pose, low lunge</li>
+              <li><strong>Spine lengthening:</strong> child's pose</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.6</p>
+            <h3>Nerves</h3>
+            <p class="topic-summary-text">Train coordination through tai chi, dance, and reactive sports.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Your muscles and nerves are a package. You should train your muscles <em>and</em> nerves.</p>
+            <h4>Ways to keep your nerves sharp</h4>
+            <ul>
+              <li>Tai chi is an evidence-based method that prevents falls later in life, and is relaxing</li>
+              <li>Any coordinated activity where you move your body in response to or with someone else</li>
+              <li>Ballroom dancing with a partner and background music</li>
+              <li>Sport (e.g. fencing, tennis)</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.7</p>
+            <h3>Joints & Bones</h3>
+            <p class="topic-summary-text">Run on grass, swim, lift sensibly. Calcium, vitamin D, and sun.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>This one is tough, because your bones require forces going through them to promote architectural strengthening, however such forces wear out your joints over time. The solution? I don't have one.</p>
+            <h4>General advice for joints</h4>
+            <ul>
+              <li>Probably best to avoid marathons</li>
+              <li>Run on grass</li>
+              <li>Swimming is a great aerobic, non-impact activity</li>
+              <li>Lifting weights is good, but regular 'super-heavy' lifting is arguably counter-productive long-term</li>
+            </ul>
+            <h4>General advice for bones</h4>
+            <ul>
+              <li>Lift weights</li>
+              <li>Adequate calcium intake</li>
+              <li>Adequate vitamin D intake (and sun exposure)</li>
+              <li>For females: discuss menopause with your doctor</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.8</p>
+            <h3>Diet & Microbiome</h3>
+            <p class="topic-summary-text">Whole foods, fermented foods, fish, legumes, olive oil, avocado.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Calorie intake</h4>
+            <p>Use a calorie intake calculator based on your size and exercise status.</p>
+            <h4>Microbiome</h4>
+            <p>Eat organic if financially possible — the less pesticides and chemicals you ingest in your lifetime, the better off you'll be.</p>
+            <p><strong>Friendly foods:</strong></p>
+            <ul>
+              <li>Fruit</li>
+              <li>Vegetables (especially leafy greens)</li>
+              <li>Nuts and seeds</li>
+              <li>A variety of microbe-containing foods in moderation, e.g. fermented foods such as sourdough, sauerkraut, perhaps kombucha</li>
+            </ul>
+            <p>Dairy-based foods such as yoghurt have an unclear benefit in my opinion. I think it interesting that humans <em>choose</em> to have milk products (of other animals!) into adulthood. I generally avoid or minimise such products.</p>
+            <p><strong>Inflammatory foods to minimise:</strong> highly processed foods such as fast food, anything deep fried, cured meats.</p>
+            <h4>Protein intake</h4>
+            <ul>
+              <li><strong>To maintain muscle:</strong> 0.8–1.2g per kg daily</li>
+              <li><strong>To build muscle:</strong> &gt;1.2g per kg per day</li>
+              <li>Prioritise fish, poultry and legumes; occasional red meat</li>
+              <li>Muscle growth is stimulated by a protein-containing meal — more meals means more muscle building, but avoid eating too regularly to protect your vessels long-term</li>
+            </ul>
+            <h4>Post-workout</h4>
+            <p>Ingest a small amount of fast carbohydrate (e.g. honey) to help replenish your muscle's glycogen. Your muscles supposedly won't rebuild until glycogen stores have been restored. Ingest &gt;25g of protein within 30 minutes of a workout. I opt for a plant-based protein and avoid whey.</p>
+            <h4>Carbohydrates</h4>
+            <ul>
+              <li>Sourdough bread (Glycaemic Index reduced further by freezing/toasting)</li>
+              <li>Boiled potato (avoid baking/frying — this increases the GI)</li>
+              <li>Pasta</li>
+              <li>Whole grains (minimally processed)</li>
+              <li>Rice (unclear if same or worse than above)</li>
+            </ul>
+            <h4>Plenty of good fats</h4>
+            <ul>
+              <li>Extra virgin olive oil</li>
+              <li>Avocado</li>
+            </ul>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.9</p>
+            <h3>Fertility</h3>
+            <p class="topic-summary-text">Minimise plastics. Eat clean. Stay vaccinated. Practise safe sex.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Minimise plastic</h4>
+            <p>Microplastics are being found everywhere — from heart vessels to semen. Minimise plastic in your home; use:</p>
+            <ul>
+              <li>Wooden cooking utensils</li>
+              <li>Glass food storage containers</li>
+              <li>Metal cookware</li>
+              <li>Metal cutlery</li>
+            </ul>
+            <h4>For males</h4>
+            <ul>
+              <li>Eat clean</li>
+              <li>Exercise</li>
+              <li>Ensure vaccinated against Mumps</li>
+              <li>Safe sex: avoid contracting STDs</li>
+              <li>Avoid tight underwear; ensure underwear is breathable</li>
+              <li>Avoid excessive heat to genitals — no laptops on your lap, avoid saunas when trying for a baby</li>
+            </ul>
+            <h4>For females</h4>
+            <ul>
+              <li>Eat clean, with enough calories to have a period</li>
+              <li>Exercise</li>
+              <li>Ensure vaccinated against HPV (potential indirect effect on fertility)</li>
+              <li>Safe sex: avoid contracting STDs</li>
+            </ul>
+            <h4>Infertility</h4>
+            <p>Defined as the inability to fall pregnant after a year of regular, penetrative vaginal sex.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.10</p>
+            <h3>Sleep Hygiene</h3>
+            <p class="topic-summary-text">Routine, cool room, no screens before bed, eat 2 hours prior.</p>
+          </summary>
+          <div class="topic-detail">
+            <h4>Develop a routine</h4>
+            <ul>
+              <li>Put your phone on charge, on sleep + silent mode, with a pre-set gentle wake-up alarm</li>
+              <li>Glass of water</li>
+              <li>Stretch</li>
+              <li>Shower</li>
+              <li>Brush your teeth and floss</li>
+              <li>Mindfulness</li>
+              <li>Meditation</li>
+              <li>Fall asleep</li>
+            </ul>
+            <h4>Sleep principles</h4>
+            <ul>
+              <li>Regular bed time</li>
+              <li>Regular wake time</li>
+              <li>Ideally avoid screens in the hour prior to bed</li>
+              <li>Eat at least 2 hours prior to bed, especially heavy or fatty meals</li>
+              <li>Limit caffeine during the day, especially the afternoon</li>
+              <li>Sleep in a cool, comfortable bed</li>
+              <li>Sleep long enough to feel rested</li>
+            </ul>
+            <h4>How do you sound when you sleep?</h4>
+            <p>What does your partner or family say about your sleep sounds? Do you snore? Do you mouth breathe? Are there long pauses? Worth chatting to your doctor if you breathe abnormally.</p>
+            <p>Do you feel restored post sleeping? Worth chatting to your doctor if not.</p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.11</p>
+            <h3>Identifying Health Triggers</h3>
+            <p class="topic-summary-text">A thorough history makes most diagnoses. Find a GP you trust.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>Most diagnoses in medicine can be made with a comprehensive history.</p>
+            <p>For any problem you ever have, jot down when it started, what you were doing at the time, any other associated symptoms, and how it impacts your life. Armed with this info, you (with or without a doctor) will hopefully be able to figure out what's going on with your body.</p>
+            <h4>Personal example — asthma triggers</h4>
+            <ul>
+              <li>Exercise</li>
+              <li>Pollen</li>
+              <li>House dust</li>
+              <li>Cats</li>
+            </ul>
+            <p>And so I've learnt to exercise in a specific asthma-friendly way, minimise the 3 environmental allergens in my home, and underwent de-sensitisation therapy to these allergens.</p>
+            <h4>AI is useful, but cannot be fully trusted</h4>
+            <p>Doctors, especially with the imminent help of AI, are often helpful in navigating medical problems given their training and medical literacy. <strong>Find a family physician or GP that you like.</strong></p>
+          </div>
+          </details></article>
+
+          <article class="topic-card"><details><summary>
+            <p class="topic-num">4.12</p>
+            <h3>Health No-No's</h3>
+            <p class="topic-summary-text">Don't smoke. Don't drink excessively. Don't use recreational drugs.</p>
+          </summary>
+          <div class="topic-detail">
+            <p>There's better ways to have fun. Drugs are a world of badness.</p>
+            <h4>Do not smoke (including vaping)</h4>
+            <ul>
+              <li>Nicotine addictions can be hard to break</li>
+              <li>Super-heated inhaled substances will do damage</li>
+            </ul>
+            <h4>Do not drink alcohol excessively</h4>
+            <ul>
+              <li>If you do drink, avoid fast/heavy carbohydrate drinks</li>
+              <li>I opt for an organic wine at social occasions</li>
+            </ul>
+            <h4>Do not do recreational drugs</h4>
+            <p>Cocaine, weed, MDMA, amphetamines, methamphetamine.</p>
+          </div>
+          </details></article>
+
+        </div>
+      </section>
+
+      <!-- ══ REFERENCES & AUTHOR CREDIT ══ -->
+      <section id="references" class="references-section" aria-labelledby="references-heading">
+        <h2 id="references-heading">References & Further Reading</h2>
+        <ol>
+          <li id="ref1">Seligman MEP. PERMA and the building blocks of well-being. <em>J Posit Psychol</em>. 2018. doi:10.1080/17439760.2018.1437466</li>
+          <li id="ref2">Duckworth AL. <em>Grit: The Power of Passion and Perseverance</em>. New York: Scribner; 2016.</li>
+          <li id="ref3">Clear J. <em>Atomic Habits: An Easy and Proven Way to Build Good Habits and Break Bad Ones</em>. New York: Avery; 2018.</li>
+          <li id="ref4">Brown B. <em>Atlas of the Heart: Mapping Meaningful Connection and the Language of Human Experience</em>. New York: Random House; 2021.</li>
+          <li id="ref5">Solzhenitsyn A. <em>The Gulag Archipelago</em>. New York: Harper & Row; 1973.</li>
+        </ol>
+
+        <div class="author-credit">
+          <span class="author-credit-mark" aria-hidden="true">M</span>
+          <p class="author-credit-text">Written by <strong>Dr McIntosh</strong></p>
+        </div>
+      </section>
+
+    </main>
+
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-sticky">
+        <div class="ad-zone ad-zone-sidebar" role="complementary" aria-label="Advertisement">
+          <div>
+            <div class="ad-zone-label">Advertisement</div>
+            <p style="margin-top:0.75rem; font-size:0.75rem; color:#999;">
+              AdSense 300×600<br/>
+              Replace this block with your<br/>
+              &lt;ins class="adsbygoogle"&gt; code
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ── PAGE-LEVEL MEDICAL DISCLAIMER ── -->
+  <div class="page-disclaimer-wrap">
+    <div class="page-disclaimer" role="note" aria-label="Medical disclaimer">
+      <h3>Medical disclaimer</h3>
+      <p>The information on this website is for general educational purposes only and does not constitute medical advice. Always consult a qualified healthcare professional for personal medical guidance. If you have a health concern, please speak to your doctor or general practitioner.</p>
+    </div>
+  </div>
+
+  <div class="footer-ad-wrapper">
+    <div class="ad-zone ad-zone-footer" role="complementary" aria-label="Advertisement">
+      <div class="ad-zone-label">Advertisement — 728×90 Leaderboard</div>
+    </div>
+  </div>
+
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <nav class="footer-nav" aria-label="Framework navigation">
+        <h4>The Framework</h4>
+        <ul>
+          <li><a href="#mental">Mental</a></li>
+          <li><a href="#emotional">Emotional</a></li>
+          <li><a href="#social">Social</a></li>
+          <li><a href="#physical">Physical</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Site pages">
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="My Inner Framework legal">
+        <h4>My Inner Framework</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="cookies.html">Cookie Policy</a></li>
+          <li><a href="terms.html">Terms and Conditions</a></li>
+          <li><a href="#" class="termly-display-preferences">Consent Preferences</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
