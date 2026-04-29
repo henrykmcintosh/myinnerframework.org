@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — My Inner Framework</title>
+  <meta name="description" content="Contact Dr McIntosh at My Inner Framework." />
+  <meta property="og:title" content="Contact — My Inner Framework" />
+  <meta property="og:description" content="Contact Dr McIntosh at My Inner Framework." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myinnerframework.org/contact.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FFFFFF;
+      --bg-soft:   #FAFAF9;
+      --border:    #EAE7E1;
+      --border-2:  #D9D4CB;
+      --text:      #1F1B16;
+      --muted:     #6B6358;
+      --muted-2:   #8A8278;
+      --ink-deep:  #2A241D;
+      --accent:    #B89256;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: #2A241D !important;
+      letter-spacing: 0.01em;
+      text-decoration: none !important;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6B6358 !important;
+      text-decoration: none !important;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #2A241D !important; }
+
+    .nav-links a.active { color: #2A241D !important; }
+
+    .page-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 2rem 4rem;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-header .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 300;
+      color: var(--ink-deep);
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+    }
+
+    .page-body p {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .page-body a {
+      color: var(--ink-deep);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-2);
+      transition: border-color 0.2s;
+    }
+
+    .page-body a:hover { border-color: var(--ink-deep); }
+
+    .info-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 2.25rem;
+      margin: 2rem 0;
+    }
+
+    .info-card .label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .info-card .email-link {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--ink-deep);
+      text-decoration: none;
+      letter-spacing: -0.005em;
+      border-bottom: 1px solid var(--border-2);
+      padding-bottom: 0.15rem;
+      transition: border-color 0.2s;
+    }
+
+    .info-card .email-link:hover { border-color: var(--ink-deep); }
+
+    .note {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink-deep);
+      color: rgba(255,255,255,0.6);
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-inner a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-inner a:hover { color: rgba(255,255,255,0.95); }
+
+    @media (max-width: 700px) {
+      .nav-links { gap: 1rem; }
+      .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+      .page-wrapper { padding: 100px 1.25rem 3rem; }
+      .info-card { padding: 1.5rem; }
+      .info-card .email-link { font-size: 1.2rem; word-break: break-all; }
+    }
+  </style>
+
+  <style>
+    #cookie-banner {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+      background: #2A241D;
+      color: #F5F1EA;
+      padding: 1.5rem 1.75rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      z-index: 99999;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      display: none;
+    }
+    #cookie-banner.visible { display: block; }
+    #cookie-banner h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #F5F1EA;
+    }
+    #cookie-banner p {
+      color: rgba(245, 241, 234, 0.85);
+      margin-bottom: 1rem;
+    }
+    #cookie-banner a {
+      color: #D4B587;
+      text-decoration: underline;
+    }
+    #cookie-banner-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    #cookie-banner button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.65rem 1.35rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    #cookie-banner button.primary {
+      background: #B89256;
+      color: #2A241D;
+    }
+    #cookie-banner button.primary:hover { background: #D4B587; }
+    #cookie-banner button.secondary {
+      background: transparent;
+      color: #F5F1EA;
+      border-color: rgba(245, 241, 234, 0.4);
+    }
+    #cookie-banner button.secondary:hover { border-color: #F5F1EA; }
+    @media (max-width: 600px) {
+      #cookie-banner { padding: 1.25rem; bottom: 0.5rem; left: 0.5rem; right: 0.5rem; }
+      #cookie-banner-actions { flex-direction: column; }
+      #cookie-banner button { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav aria-label="Main navigation" style="display:flex !important; visibility:visible !important; opacity:1 !important;">
+    <a href="index.html" class="nav-logo" style="color:#2A241D !important; visibility:visible !important; opacity:1 !important;">My Inner Framework</a>
+    <ul class="nav-links" style="display:flex !important; visibility:visible !important; opacity:1 !important; list-style:none !important; margin:0 !important; padding:0 !important; gap:2rem !important;">
+      <li style="list-style:none !important; visibility:visible !important;"><a href="index.html#mental" style="color:#2A241D !important; text-decoration:none !important; visibility:visible !important; opacity:1 !important; font-size:0.82rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;">Mental</a></li>
+      <li style="list-style:none !important; visibility:visible !important;"><a href="index.html#emotional" style="color:#2A241D !important; text-decoration:none !important; visibility:visible !important; opacity:1 !important; font-size:0.82rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;">Emotional</a></li>
+      <li style="list-style:none !important; visibility:visible !important;"><a href="index.html#social" style="color:#2A241D !important; text-decoration:none !important; visibility:visible !important; opacity:1 !important; font-size:0.82rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;">Social</a></li>
+      <li style="list-style:none !important; visibility:visible !important;"><a href="index.html#physical" style="color:#2A241D !important; text-decoration:none !important; visibility:visible !important; opacity:1 !important; font-size:0.82rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;">Physical</a></li>
+      <li style="list-style:none !important; visibility:visible !important;"><a href="about.html" style="color:#2A241D !important; text-decoration:none !important; visibility:visible !important; opacity:1 !important; font-size:0.82rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;">About</a></li>
+      <li style="list-style:none !important; visibility:visible !important;"><a href="contact.html" class="active" style="color:#2A241D !important; text-decoration:none !important; visibility:visible !important; opacity:1 !important; font-size:0.82rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-wrapper">
+
+    <header class="page-header">
+      <p class="eyebrow">Contact</p>
+      <h1>Got a question?</h1>
+    </header>
+
+    <div class="page-body">
+
+      <p>Any medical queries should be directed to your family doctor or specialist, with use of this website as per the <a href="terms.html">Terms and Conditions</a>.</p>
+
+      <div class="info-card">
+        <p class="label">General Enquiries</p>
+        <a href="mailto:myinnerframework@gmail.com" class="email-link">myinnerframework@gmail.com</a>
+
+        <p class="note">Given the juggle of shift work, study and life, please expect a delayed response time. Thank you in advance for your patience!</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html">← Back to My Inner Framework</a>
+      <a href="about.html">About</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="#" id="open-cookie-prefs">Cookie Preferences</a>
+    </div>
+  </footer>
+
+
+  <!-- ── COOKIE CONSENT BANNER ── -->
+  <div id="cookie-banner" role="dialog" aria-labelledby="cookie-banner-title" aria-describedby="cookie-banner-desc">
+    <h4 id="cookie-banner-title">Cookies on this site</h4>
+    <p id="cookie-banner-desc">We use essential cookies to make this site work, and (with your consent) optional cookies for analytics and advertising. You can change your choice anytime from <em>Cookie Preferences</em> in the footer. See our <a href="cookies.html">Cookie Policy</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+    <div id="cookie-banner-actions">
+      <button class="primary" id="cookie-accept">Accept all</button>
+      <button class="secondary" id="cookie-reject">Reject non-essential</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var STORAGE_KEY = 'mif_cookie_consent_v1';
+      var banner = document.getElementById('cookie-banner');
+      var acceptBtn = document.getElementById('cookie-accept');
+      var rejectBtn = document.getElementById('cookie-reject');
+      var prefsLink = document.getElementById('open-cookie-prefs');
+
+      function showBanner() { banner.classList.add('visible'); }
+      function hideBanner() { banner.classList.remove('visible'); }
+
+      function saveConsent(value) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            choice: value,
+            timestamp: new Date().toISOString()
+          }));
+        } catch (e) { /* localStorage unavailable; banner will reappear */ }
+      }
+
+      function getConsent() {
+        try {
+          var stored = localStorage.getItem(STORAGE_KEY);
+          return stored ? JSON.parse(stored).choice : null;
+        } catch (e) { return null; }
+      }
+
+      if (!getConsent()) {
+        showBanner();
+      }
+
+      acceptBtn.addEventListener('click', function() {
+        saveConsent('accepted');
+        hideBanner();
+      });
+
+      rejectBtn.addEventListener('click', function() {
+        saveConsent('rejected');
+        hideBanner();
+      });
+
+      if (prefsLink) {
+        prefsLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          showBanner();
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
